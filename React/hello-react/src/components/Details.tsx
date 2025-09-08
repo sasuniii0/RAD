@@ -1,5 +1,5 @@
 const DetailCard = (props:any) => {
-    return <div>
+    return <div className = "detail-card">
         <h1>Detail Card Component</h1>
         <p>This is a detail card component.</p>
         {props.children}

@@ -25,7 +25,9 @@ const App = () => {
       </ul>
     </DetailCard>
     <DetailCard name = {"hello"}/>
-      <h1>Hello, React!</h1>
+      <h1
+        style={ { color: "blue", textAlign: "center" } }
+      >Hello, React!</h1>
       <h2>My name is {me}</h2>
       <p>Welcome to your first React application.</p>
   </Fragment>
