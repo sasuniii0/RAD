@@ -15,6 +15,13 @@ let flags: boolean[] = [true, false, true];
 // tuples
 let person: [string, number] = ["Alice", 30];
 
+// enums
+enum Color {
+    RED,
+    GREEN,
+    BLUE
+}
+
 
 console.log(`Name: ${name}, Age: ${age}, Is Student: ${isStudent}`);
 
