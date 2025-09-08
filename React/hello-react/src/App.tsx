@@ -17,6 +17,13 @@ const App = () => {
     // <img />, <input />, <br />, <hr />, <meta />, <link />
    
   <Fragment>
+    <DetailCard>
+      <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+      </ul>
+    </DetailCard>
     <DetailCard/>
       <h1>Hello, React!</h1>
       <h2>My name is {me}</h2>
