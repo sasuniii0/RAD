@@ -51,5 +51,47 @@ let user_data2 : User={
     age: 28
 }
 
+//Type assertion
+type student = {
+    name: string
+    age: number
+    school: string
+    address?: string
+}
 
+let student1 ={
+    name: "Charlie",
+    age: 22,
+    school: "XYZ University"
+}
+
+//Union types
+ let value : string | number | boolean | null;
+ value = "Hello";
+ value = 100;
+ value = true;
+ value = null;
+
+ // Functions
+ function sum(x:number,y:number){
+    return x+y;
+ }
+
+ let x: number = sum(10, 20);
+ console.log(x);
+
+ //Optional parameter..
+ const temp = (name:string,age?:number):string=>{
+    return age ? `Name: ${name}, Age: ${age}` : `Name: ${name}, Age not provided`;
+ }
+ temp("John");
+ temp("John", 25);
+
+ function multiply(a: number, b:number= 1): number {
+    return a * b;
+ }
+ multiply(5); // b defaults to 1
+ multiply(5, 2); // b is 2
+
+ // Compile the TypeScript code to JavaScript
 // npx tsc 
