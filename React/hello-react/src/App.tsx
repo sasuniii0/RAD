@@ -24,7 +24,7 @@ const App = () => {
         <li>Item 3</li>
       </ul>
     </DetailCard>
-    <DetailCard/>
+    <DetailCard name = {"hello"}/>
       <h1>Hello, React!</h1>
       <h2>My name is {me}</h2>
       <p>Welcome to your first React application.</p>

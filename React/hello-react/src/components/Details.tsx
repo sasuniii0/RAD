@@ -3,6 +3,8 @@ const DetailCard = (props:any) => {
         <h1>Detail Card Component</h1>
         <p>This is a detail card component.</p>
         {props.children}
+
+        <h6>{props.name}</h6>
     </div>;
 }
 
