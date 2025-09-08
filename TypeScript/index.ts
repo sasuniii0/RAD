@@ -87,6 +87,7 @@ let student1 ={
  temp("John");
  temp("John", 25);
 
+// Default parameter
  function multiply(a: number, b:number= 1): number {
     return a * b;
  }
