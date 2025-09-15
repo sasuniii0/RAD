@@ -44,32 +44,11 @@ class AppClass extends  Component{
 // }
 
 import UserDetail from "./components/UserDetail";
+//import dataList from "../src/data/UserData"
+// default export krla nam tiynne ethkota puluwn kmathi namakin import krgnna...
 
-const dataLIst =[
-  {
-    name:"Sasuni",
-    age: 21,
-    isAdmin: true
-  },
-  {
-    name:"Minuki",
-    age:20,
-    email: "minuki@gmail.com",
-    isAdmin: false
-  },
-  {
-    name:"Chanuli",
-    age:17,
-    email: "chanuli@gmail.com",
-    isAdmin: false
-  },
-  {
-    name:"Hiveen",
-    age:19,
-    email: "hiveen@gmail.com",
-    isAdmin: true
-  }
-]
+import { dataLIst,value } from "./data/UserData";
+// default export krla nattm api actual name ekenma import krgnna one...
 
 const App = ()=>{
   return (
