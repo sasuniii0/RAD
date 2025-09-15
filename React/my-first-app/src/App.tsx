@@ -19,12 +19,6 @@ function App(){
     // we can use empty tags to define -- extra element ekk widihata add wenne na me empty tag ek
     // and also we can use <Fragment></Fragment> --> Fragment is Old--> new version ek thmai <></> empty tags
     <>
-      < MyComponent />
-      < MyComponent />
-      < MyComponent />
-      < MyComponent />
-      < MyComponent />
-
       <hr/>
       <h1> React Functional-Component</h1>
       <h3>Hello, {user}</h3>
@@ -32,6 +26,19 @@ function App(){
       <p>
         In React, function components are a fundamental way to define components. They are lightweight, simple, and can handle both UI rendering and logic. The react/function-component-definition rule in ESLint enforces consistent function types for defining these components, ensuring code readability and maintainability.
       </p>
+
+      <MyComponent>
+        <h4>I'm default prop (1)</h4>
+      </MyComponent>      
+
+      <MyComponent>
+        <h4>I'm default prop (2)</h4>
+      </MyComponent>
+
+      <MyComponent>
+        <h4>name ={"sasuni"} age={21} email={"sasuni@gmail.com"}</h4>
+      </MyComponent>
+
     </>
   )
 }
