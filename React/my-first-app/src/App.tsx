@@ -55,7 +55,7 @@ const App = ()=>{
     <>
       <h1>User Details List</h1>
       <hr></hr> 
-      {dataLIst.map((data,index)=>{
+      {dataLIst?.map((data,index)=>{
         return <UserDetail 
         key={index}
         name={data.name} 
