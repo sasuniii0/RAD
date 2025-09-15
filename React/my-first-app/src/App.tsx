@@ -71,17 +71,51 @@ class AppClass extends  Component{
 // -------------------------------------event handeling---------------------------------------------
 // click event
 
-const App = () =>{
-  const handleButtonClick = (e:any)=>{
-    console.log("You Clicked Me...");
-    console.log(e);
-    e.target.textContent = "Ouch...😢"
+// const App = () =>{
+//   const handleButtonClick = (e:any)=>{
+//     console.log("You Clicked Me...");
+//     console.log(e);
+//     e.target.textContent = "Ouch...😢"
     
     
-  }
+//   }
+//   return (
+//     <>
+//       <button onClick={handleButtonClick}>Click Me😒</button>
+//     </>
+//   )
+// }
+//
+
+// -------------------------------Hooks-------------------------------------
+
+//--------------------------------State--------------------------------------------
+
+import {useState} from "react"
+const App = ()=>{
+      //let count : number = 0
+
+      const [count,setCount]  = useState(0)
+
+      const increment = () =>{
+        setCount(count +1)
+      }
+      const decrement = ()=>{
+        setCount(count-1)
+      }
+      const reset = ()=>{
+        setCount(0)
+        
+      }
   return (
+  
     <>
-      <button onClick={handleButtonClick}>Click Me😒</button>
+      <h1>Count : {count}</h1>
+      <div>
+        <button onClick={() => decrement()}>-</button>
+        <button onClick={() => reset()}>reset</button>
+        <button onClick={() => increment()}>+</button>
+      </div>
     </>
   )
 }
