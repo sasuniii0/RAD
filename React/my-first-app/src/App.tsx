@@ -43,28 +43,46 @@ class AppClass extends  Component{
 //   )
 // }
 
-import UserDetail from "./components/UserDetail";
-//import dataList from "../src/data/UserData"
-// default export krla nam tiynne ethkota puluwn kmathi namakin import krgnna...
+// import UserDetail from "./components/UserDetail";
+// //import dataList from "../src/data/UserData"
+// // default export krla nam tiynne ethkota puluwn kmathi namakin import krgnna...
 
-import { dataLIst,value } from "./data/UserData";
-// default export krla nattm api actual name ekenma import krgnna one...
+// import { dataLIst,value } from "./data/UserData";
+// // default export krla nattm api actual name ekenma import krgnna one...
 
-const App = ()=>{
+// const App = ()=>{
+//   return (
+//     <>
+//       <h1>User Details List</h1>
+//       <hr></hr> 
+//       {dataLIst?.map((data,index)=>{
+//         return <UserDetail 
+//         key={index}
+//         name={data.name} 
+//         age={data.age} 
+//         email={data.email} 
+//         isAdmin={data.isAdmin}></UserDetail>
+//       })}
+//     </>
+//   )
+// }
+
+
+// -------------------------------------event handeling---------------------------------------------
+// click event
+
+const App = () =>{
+  const handleButtonClick = (e:any)=>{
+    console.log("You Clicked Me...");
+    console.log(e);
+    e.target.textContent = "Ouch...😢"
+    
+    
+  }
   return (
     <>
-      <h1>User Details List</h1>
-      <hr></hr> 
-      {dataLIst?.map((data,index)=>{
-        return <UserDetail 
-        key={index}
-        name={data.name} 
-        age={data.age} 
-        email={data.email} 
-        isAdmin={data.isAdmin}></UserDetail>
-      })}
+      <button onClick={handleButtonClick}>Click Me😒</button>
     </>
   )
 }
-
 export default App;
