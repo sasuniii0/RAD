@@ -91,31 +91,73 @@ class AppClass extends  Component{
 
 //--------------------------------State--------------------------------------------
 
-import {useState} from "react"
-const App = ()=>{
-      //let count : number = 0
+// import {useState} from "react"
+// const App = ()=>{
+//       //let count : number = 0
 
-      const [count,setCount]  = useState(0)
+//       const [count,setCount]  = useState(0)
 
-      const increment = () =>{
-        setCount(count +1)
-      }
-      const decrement = ()=>{
-        setCount(count-1)
-      }
-      const reset = ()=>{
-        setCount(0)
+//       const increment = () =>{
+//         setCount((prev) => prev +1)
+//       }
+//       const decrement = ()=>{
+//         setCount((prev) => prev -1)
+//       }
+//       const reset = ()=>{
+//         setCount(0)
         
-      }
-  return (
+//       }
+//   return (
   
+//     <>
+//       <h1>Count : {count}</h1>
+//       <div>
+//         <button onClick={() => decrement()}>-</button>
+//         <button onClick={() => reset()}>reset</button>
+//         <button onClick={() => increment()}>+</button>
+//       </div>
+//     </>
+//   )
+// }
+
+//-----------------form------------------------------------------
+ import {useState} from "react"
+
+const App = ()=>{
+  const [name,setName] = useState<string>("")
+  const [age,setAge] = useState<number>(0)
+  const [email,setEmail] = useState<string>("")
+
+  const [users,setUsers] = useState<any[]>([])
+
+  const addUser = ()=>{
+    if(!name || !age || !email){
+      return alert("Please fill the fields")
+    }
+    const user = {name,age,email}
+    setUsers((prev) => [...prev,user])
+
+    setName("")
+    setAge(0)
+    setEmail("")
+  }
+
+  return (
     <>
-      <h1>Count : {count}</h1>
-      <div>
-        <button onClick={() => decrement()}>-</button>
-        <button onClick={() => reset()}>reset</button>
-        <button onClick={() => increment()}>+</button>
-      </div>
+      <h1>Name : {name} , Age : {age} , Email : {email}</h1>
+      <input value ={name} onChange={(e) => setName(e.target.value)} type = "text" placeholder="name"></input>
+      <input value ={age} onChange={(e) => setAge(Number(e.target.value))} type = "number"placeholder="age"></input>
+      <input value ={email} onChange={(e) => setEmail(e.target.value)} type = "text"placeholder="email"></input>
+      <button onClick={(e) => addUser()}>Save</button>
+      {
+        users?.map((data,index)=>{
+          <div>
+            <h5>Name : {data?.name}</h5>
+            <h5>Age : {data?.age}</h5>
+            <h5>Email : {data?.email}</h5>
+          </div>
+        })
+      }
     </>
   )
 }
