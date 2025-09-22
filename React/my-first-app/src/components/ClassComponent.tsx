@@ -10,9 +10,9 @@ export class ClassComponent extends Component{
         console.log("component mounting...");
     } 
 
-    componentDidUpdate(prevProps, prevState, snapshot): void {
+    // componentDidUpdate(prevProps, prevState, snapshot): void {
         
-    }
+    // }
 
     componentWillUnmount(): void {
         // component unmounting process...
