@@ -10,7 +10,8 @@ export default function App(){
   useEffect(()=>{
     console.log("Hellooo");
     
-  })
+  },[]) // dependency arrays...
+  // if dependency array is empty we can call api calls in there...
 
   //console.log("Hiiii");
   
