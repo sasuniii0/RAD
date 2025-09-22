@@ -1,1 +1,1 @@
-rfc
+//rfc--> can create functions automatically..
