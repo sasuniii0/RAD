@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import type { AppDispatch, RootState } from "./redux/store"
-import { decrement, increment, setValue } from "./redux/action/counterAction"
+import { decrement, increment, setValue } from "./redux/features/counterSlice"
 import CountView from "./countView"
 
 const App=()=>{
