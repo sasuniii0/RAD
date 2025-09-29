@@ -75,18 +75,24 @@
 // }
 // export default App
 
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 const App =()=>{
   const [name,setName] = useState("")
   const [email, setEmail] = useState("")
   const [result , setResult] = useState("")
 
-  const myFunction = ()=>{
-    console.log("The function is running...");
+  // component re-render -> function is re-creating
+  // const myFunction = ()=>{
+  //   console.log("The function is running...");
     
+  //   return "Hello"
+  // }
+
+  const myFunction = useCallback(()=>{
+    console.log("function is running");
     return "Hello"
-  }
+  },[])
 
   useEffect(()=>{
     console.log("Use effect is running");
