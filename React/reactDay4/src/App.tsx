@@ -42,35 +42,68 @@
 // export default App
 
 //-----------------------------------USEMEMO-------------------------------------------------------
-import { useState , useMemo} from "react"
+// import { useState , useMemo} from "react"
 
-const inputHandler = (value:any)=>{
+// const inputHandler = (value:any)=>{
 
-  let sum = 0
-  for(let i =0; i <1000000000; i++){
-    sum++
-  }
-  return value
-}
+//   let sum = 0
+//   for(let i =0; i <1000000000; i++){
+//     sum++
+//   }
+//   return value
+// }
 
-const App = ()=>{
+// const App = ()=>{
+//   const [name,setName] = useState("")
+//   const [email, setEmail] = useState("")
+
+//   //const data = inputHandler(name)
+//   // const data:any = useMemo(inputHandler(name) ,[name])
+
+//    const data:any = useMemo(()=>{
+//     inputHandler(name)
+//    },[name])
+//   console.log("rendered");
+  
+//   return(
+//     <div>
+//       <input placeholder="name" value={name} onChange={(e) => setName(e.target.value)}/>
+//       <input placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+//       <p>{data}</p>
+//     </div>
+//   )
+// }
+// export default App
+
+import { useEffect, useState } from "react"
+
+const App =()=>{
   const [name,setName] = useState("")
   const [email, setEmail] = useState("")
+  const [result , setResult] = useState("")
 
-  //const data = inputHandler(name)
-  // const data:any = useMemo(inputHandler(name) ,[name])
+  const myFunction = ()=>{
+    console.log("The function is running...");
+    
+    return "Hello"
+  }
 
-   const data:any = useMemo(()=>{
-    inputHandler(name)
-   },[name])
-  console.log("rendered");
+  useEffect(()=>{
+    console.log("Use effect is running");
+    setResult(myFunction())
+    
+  },[myFunction])
+
+  console.log("component re-rendering");
   
+
   return(
-    <div>
-      <input placeholder="name" value={name} onChange={(e) => setName(e.target.value)}/>
-      <input placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-      <p>{data}</p>
-    </div>
-  )
+     <div>
+       <input placeholder="name" value={name} onChange={(e) => setName(e.target.value)}/>
+       <input placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+       <p>{result}</p>
+     </div>
+    )
 }
+
 export default App
