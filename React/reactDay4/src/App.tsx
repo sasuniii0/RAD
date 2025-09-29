@@ -140,7 +140,7 @@ const App = ()=>{
     age:0
   })
 
-  console.log( state);
+  console.log(state);
   
   return(
     <div>
