@@ -75,41 +75,89 @@
 // }
 // export default App
 
-import { useCallback, useEffect, useState } from "react"
+//-----------------------------------------useCallBack--------------------------------------
 
-const App =()=>{
-  const [name,setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [result , setResult] = useState("")
+// import { useCallback, useEffect, useState } from "react"
 
-  // component re-render -> function is re-creating
-  // const myFunction = ()=>{
-  //   console.log("The function is running...");
+// const App =()=>{
+//   const [name,setName] = useState("")
+//   const [email, setEmail] = useState("")
+//   const [result , setResult] = useState("")
+
+//   // component re-render -> function is re-creating
+//   // const myFunction = ()=>{
+//   //   console.log("The function is running...");
     
-  //   return "Hello"
-  // }
+//   //   return "Hello"
+//   // }
 
-  const myFunction = useCallback(()=>{
-    console.log("function is running");
-    return "Hello"
-  },[])
+//   const myFunction = useCallback(()=>{
+//     console.log("function is running");
+//     return "Hello"
+//   },[])
 
-  useEffect(()=>{
-    console.log("Use effect is running");
-    setResult(myFunction())
+//   useEffect(()=>{
+//     console.log("Use effect is running");
+//     setResult(myFunction())
     
-  },[myFunction])
+//   },[myFunction])
 
-  console.log("component re-rendering");
+//   console.log("component re-rendering");
   
 
-  return(
-     <div>
-       <input placeholder="name" value={name} onChange={(e) => setName(e.target.value)}/>
-       <input placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-       <p>{result}</p>
-     </div>
-    )
+//   return(
+//      <div>
+//        <input placeholder="name" value={name} onChange={(e) => setName(e.target.value)}/>
+//        <input placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+//        <p>{result}</p>
+//      </div>
+//     )
+// }
+
+// export default App
+
+//------------------------------------------useReducer-------------------------------------------------
+
+import {useReducer} from "react"
+
+// ... -> parana data gnna kyna eka
+
+const reducer = (state:any, action:any)=>{
+  switch(action.type){
+    case "ID":return{...state,id: action.data}
+    case "NAME" : return{...state,name: action.data}
+    case "EMAIL" : return{...state,email:action.data}
+    case "AGE" : return{...state, age:action.data}
+    default:return state
+  }
 }
 
+const App = ()=>{
+  const [state,dispatch] = useReducer(reducer,{
+    id:"",
+    name : "",
+    email:"",
+    age:0
+  })
+
+  console.log( state);
+  
+  return(
+    <div>
+      <input placeholder="ID" value={state.id} onChange={(e)=>{
+        dispatch({type:"ID" , data :e.target.value})
+      }}/>
+      <input placeholder="Name" value={state.name} onChange={(e)=>{
+        dispatch({type:"NAME" , data :e.target.value})
+      }}/>
+      <input placeholder="Email" value={state.email} onChange={(e)=>{
+        dispatch({type:"EMAIL" , data :e.target.value})
+      }}/>
+      <input placeholder="Age" value={state.age} onChange={(e)=>{
+        dispatch({type:"AGE" , data :e.target.value})
+      }}/>
+    
+    </div>
+  )
+}
 export default App
