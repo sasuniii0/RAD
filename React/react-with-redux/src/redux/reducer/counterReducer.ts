@@ -16,5 +16,4 @@ export const counterReducer = createReducer(initialState,(builder)=>{
     .addCase(setValue,(state:any,action:any)=>{
         state.count = action.payload
     })
-
 })
