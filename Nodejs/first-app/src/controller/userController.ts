@@ -14,6 +14,16 @@ export const createUser = async (req:Request,res:Response)=>{
             })
         }
 
+        const exUser = await User.findOne({
+            email:email
+        }).then((existingUser)=>{
+            if(existingUser){
+                return res.status(400).json({
+                    message:"User with this email already exists"
+                })
+            }
+        })
+
         const newUser = new User({
             // left side --> schema field
             // right side --> request body data
