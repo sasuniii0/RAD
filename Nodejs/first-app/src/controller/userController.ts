@@ -14,3 +14,7 @@ export const createUser = (req:Request,res:Response)=>{
 export const getAllUser = (req:Request,res:Response)=>{
     res.send("Hello.. from userRouter")
 }
+
+// export const updateUser = (req:Request, res: Response)=>{
+//     res.send("")
+// }
