@@ -1,10 +1,9 @@
 import { Request, Response, Router } from "express";
 import { send } from "process";
+import { getAllItems } from "../controller/itemController";
 
 const route = Router()
 
-route.get("/getAllItem",(req:Request, res:Response)=>{
-    res.send("GetAll from ItemRoute..")
-})
+route.get("/getAllItem", getAllItems)
 
 export default route

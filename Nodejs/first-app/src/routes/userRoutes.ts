@@ -1,22 +1,12 @@
 import { Router,Request,Response } from "express";
+import { createUser, getAllUser } from "../controller/userController";
 
 const router = Router()
 
 // get
-router.get("/getAllUser" , (req:Request,res : Response)=>{
-    res.send("Hello.. from userRouter")
-})
+router.get("/getAllUser" , getAllUser)
 
 // post
-router.post("/userPost",(req:Request,res:Response)=>{
-    const userData = req.body
-
-    console.log("Userdata : " ,userData);
-
-    res.status(201).json({
-        message:"User data received successfully",
-        data:userData
-    })
-})
+router.post("/userPost", createUser)
 
 export default router
