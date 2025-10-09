@@ -8,19 +8,19 @@ export const createUser = async (req:Request,res:Response)=>{
     try{
         const{ name, email, age} = req.body
 
-    const newUser = new User({
-        // left side --> schema field
-        // right side --> request body data
-        name,
-        email,
-        age
-    })
-    const savedUserData = await newUser.save()
+        const newUser = new User({
+            // left side --> schema field
+            // right side --> request body data
+            name,
+            email,
+            age
+        })
+        const savedUserData = await newUser.save()
 
-    res.status(201).json({
-        message:"User data saved successfully",
-        data:savedUserData
-    })
+        res.status(201).json({
+            message:"User data saved successfully",
+            data:savedUserData
+        })
     }catch(error){
         console.error("Error creating user:", error);
         res.status(500).json({
