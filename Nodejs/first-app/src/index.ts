@@ -13,6 +13,8 @@ import express, { Application ,Request,Response} from 'express';
 import { data } from 'react-router-dom';
 import userRoutes from "./routes/userRoutes"
 import itemRoutes from "./routes/itemRoutes"
+import mongoose from 'mongoose';
+
 
 // : Application --> it is a type annotation which is used to define the type of the variable app.
 const app:Application = express()
@@ -50,6 +52,16 @@ app.use(express.json())
 //mount routes
 app.use("/api/v1/user", userRoutes)
 app.use("/api/v1/item", itemRoutes)
+
+// connect to the database
+// mongodb promise based database
+const mongo = mongoose.connect("mongodb://localhost:27017/mongo_test")
+console.log(mongo)
+mongo.then((res)=>{
+    console.log("Database connected successfully");
+}).catch((err)=>{
+    console.log("Database connection failed", err);
+})
 
 // we can check from the callback function that the server is running or not.`
 app.listen(5000,()=>{
