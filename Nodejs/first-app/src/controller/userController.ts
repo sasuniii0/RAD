@@ -8,6 +8,12 @@ export const createUser = async (req:Request,res:Response)=>{
     try{
         const{ name, email, age} = req.body
 
+        if(!name || !email){
+            return res.status(400).json({
+                message:"Name and email are required fields"
+            })
+        }
+
         const newUser = new User({
             // left side --> schema field
             // right side --> request body data
