@@ -4,6 +4,11 @@
 // console.log("Hello...my first-app")
 
 //------------------------------------------------------------------------------------
+
+// before node 16 --> common js / module.export
+//const express = require("express")
+
+//ESNext --> (ES module) - import/export syntax
 import express, { Application ,Request,Response} from 'express';
 import { data } from 'react-router-dom';
 
