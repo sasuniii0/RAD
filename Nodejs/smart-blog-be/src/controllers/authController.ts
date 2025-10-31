@@ -12,6 +12,6 @@ export const getUserDetail = (req:Request,res:Response)=>{
     res.send('Get Details Route')
 }
 
-export const adminRegister = async (req:Request,res:Response){
+export const adminRegister = async (req:Request,res:Response)=>{
     res.send('Admin Register Route')
 }
