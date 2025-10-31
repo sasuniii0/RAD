@@ -2,6 +2,7 @@ import express , { Application ,Request,Response} from "express";
 import authRoute from "./routes/authRoute";
 import cors from "cors";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
 
 //configuring dotenv => for loading the config variables
 dotenv.config();
@@ -20,6 +21,13 @@ app.use(cors({
 
 app.use("/api/v1/auth", authRoute);
 
-app.listen(5000,()=>{
+mongoose.connect(MONGO_URI).then(()=>{
+    console.log("Connected to MongoDB");
+}).catch((err)=>{
+    console.log("Error connecting to MongoDB:", err);
+    process.exit(1); // Exit the application if unable to connect to the database => shutdown the server
+})
+
+app.listen(SERVER_PORT,()=>{
     console.log("Server is running on port 5000");
 })
