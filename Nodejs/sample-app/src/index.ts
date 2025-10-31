@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { sampleMiddleware } from './middleware/sampleMIddleware';
+import { sampleMiddleware } from './middleware/sampleMiddleware';
 
 const app = express();
 
