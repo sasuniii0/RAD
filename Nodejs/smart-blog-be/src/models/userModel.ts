@@ -3,7 +3,7 @@ import mongoose, { Document, Schema } from "mongoose";
 export enum Role{
     ADMIN="ADMIN",
     USER="USER",
-    AUTHER="AUTHER"
+    AUTHOR="AUTHOR"
 }
 
 export enum Status{
