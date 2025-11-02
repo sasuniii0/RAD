@@ -3,6 +3,7 @@ import { IUser,Role,Status,User } from "../models/userModel";
 import { signAccessToken } from "../utils/tokens";
 import { AuthRequest } from "../middlewares/authMiddleware";
 import bcrypt from "bcryptjs"
+import { existsSync } from "fs";
 
 export const userRegister = async (req:Request,res:Response)=>{
     try{
@@ -12,7 +13,7 @@ export const userRegister = async (req:Request,res:Response)=>{
             return res.status(400).json({message:"All fields are required"});
         }
 
-        if(role !== Role.USER && role !== Role.AUTHOR){
+        if(role !== Role.USER && role !== Role.AUTHOR && role !== Role.ADMIN){
             return res.status(400).json({message : "Invalid Role"})
         }
 
@@ -107,6 +108,47 @@ export const getUserDetail = async (req:AuthRequest,res:Response)=>{
     })
 }
 
-export const adminRegister = async (req:AuthRequest,res:Response)=>{
+export const adminRegister = async (req:Request,res:Response)=>{
+    try{
+        const {firstName,lastName,email,password} =req.body
     
+        if(!firstName || !lastName || !email || !password){
+            return res.status(400).json({
+                message: "All fields required"
+            })
+        }
+
+        const existingUser = await User.findOne({email})
+        if(existingUser){
+            return res.status(400).json({
+                message: "Email already exist"
+            })
+        }
+
+        const hashedPassword = await bcrypt.hash(password,10)
+
+        const newAdmin = await User.create({
+            firstName,
+            lastName,
+            email,
+            password:hashedPassword,
+            role :Role.ADMIN,
+            approved: Status.APPROVED
+        })
+
+        return res.status(201).json({
+            message: "New Admin registered successfully",
+            admin:{
+                id: newAdmin._id,
+                firstName: newAdmin.firstName,
+                lastName: newAdmin.lastName,
+                email : newAdmin.email,
+                role : newAdmin.role,
+            },
+        })
+    }catch(err){
+        return res.status(500).json({
+            message: "Internel server error"
+        })
+    }
 }
