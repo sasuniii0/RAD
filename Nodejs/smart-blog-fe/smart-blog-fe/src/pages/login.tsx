@@ -23,6 +23,16 @@ const Login: React.FC = () => {
                 password:password,
             }
             const response:any = await login(obj.email, obj.password);
+
+            const token = response.data.accessToken
+
+            if(!token) {
+                alert("Login failed. Please try again.");
+                return;
+            }
+
+            await localStorage.setItem('token', token);
+
             console.log(response.data);
             alert("Login successful!");
             navigate('/home');
