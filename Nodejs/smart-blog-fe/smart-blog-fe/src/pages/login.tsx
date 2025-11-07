@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import {login} from '../services/auth';
+import {getMydetails, login} from '../services/auth';
 
 const Login: React.FC = () => {
 
@@ -32,6 +32,9 @@ const Login: React.FC = () => {
             }
 
             await localStorage.setItem('token', token);
+
+            const details = await getMydetails()
+            console.log(details.data)
 
             console.log(response.data);
             alert("Login successful!");
