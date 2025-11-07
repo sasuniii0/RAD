@@ -15,8 +15,9 @@ const app:Application = express();
 app.use(express.json());
 
 app.use(cors({
-    origin:["http://localhost:3000"],
-    methods:["GET","POST","PUT","DELETE"]
+    origin:["http://localhost:3000","http://localhost:5175", "http://localhost:5000"],
+    methods:["GET","POST","PUT","DELETE"],
+    credentials:true
 }));
 
 app.use("/api/v1/auth", authRoute);
