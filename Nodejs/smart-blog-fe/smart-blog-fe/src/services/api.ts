@@ -9,4 +9,20 @@ const api = axios.create({
     },
 })
 
+const PUBLIC_ENDPOINTS = ["/auth/login", "/auth/register"]
+
+api.interceptors.request.use((config) => {
+    // config.headers // show the headers
+    // config.url // show the destination of the url
+
+    const token =localStorage.getItem("token")
+
+    const isPublic = PUBLIC_ENDPOINTS.some((url) =>config.url?.includes(url))
+
+    if (token && !isPublic){
+        config.headers.Authorization = `Bearer ${token} `
+    }
+    return config
+})
+
 export default api;
