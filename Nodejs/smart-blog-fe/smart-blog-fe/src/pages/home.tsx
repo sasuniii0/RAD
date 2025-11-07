@@ -1,13 +1,16 @@
 import React from "react";
+import { useAuth } from "../context/authContext";
 import { FiFileText, FiUsers, FiEdit3, FiBarChart2 } from "react-icons/fi";
 
 const Home: React.FC = () => {
+  const {user} = useAuth()
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Top Navigation Bar */}
       <header className="bg-white shadow-sm p-4 flex justify-between items-center">
         <h1 className="text-2xl font-semibold text-gray-600">Smart Blog Dashboard</h1>
         <div className="flex items-center gap-4">
+          <p>{user?.email}</p>
           <input
             type="text"
             placeholder="Search..."

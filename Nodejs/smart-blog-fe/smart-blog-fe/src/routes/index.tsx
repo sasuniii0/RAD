@@ -8,6 +8,7 @@ const Register = lazy(() => import('../pages/register'));
 const Welcome = lazy(() => import('../pages/welcome'));
 
 export default function Router (){
+    // context eka athule tiynnma one na methna idn access krnn puluwn.. hbai app eke methana idn access krnn ba wrapp wela nattam
    return(
     <BrowserRouter>
       <Suspense fallback={<div className="text-center mt-20 text-xl">Loading...</div>}>

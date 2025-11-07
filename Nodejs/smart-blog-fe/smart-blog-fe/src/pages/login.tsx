@@ -1,10 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {getMydetails, login} from '../services/auth';
+import { useAuth } from '../context/authContext';
 
 const Login: React.FC = () => {
 
     const navigate = useNavigate();
+
+    // context eka athule ewa eliyta gnnwa
+    const {user , setUser} = useAuth()
 
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -34,6 +38,7 @@ const Login: React.FC = () => {
             await localStorage.setItem('token', token);
 
             const details = await getMydetails()
+            setUser(details.data)
             console.log(details.data)
 
             console.log(response.data);
