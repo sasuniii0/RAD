@@ -22,7 +22,7 @@ app.use(cors({
 }));
 
 app.use("/api/v1/auth", authRoute);
-app.use("api/v1/post", postRoute);
+app.use("/api/v1/post", postRoute);
 
 mongoose.connect(MONGO_URI).then(()=>{
     console.log("Connected to MongoDB");
