@@ -6,6 +6,7 @@ const Home = lazy(() => import('../pages/home'));
 const Login = lazy(() => import('../pages/login'));
 const Register = lazy(() => import('../pages/register'));
 const Welcome = lazy(() => import('../pages/welcome'));
+const Post = lazy(() => import('../pages/Post'));
 
 export default function Router (){
     // context eka athule tiynnma one na methna idn access krnn puluwn.. hbai app eke methana idn access krnn ba wrapp wela nattam
@@ -75,6 +76,7 @@ export default function Router (){
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/post" element={<Post/>} />
           </Routes>
         </main>
 
