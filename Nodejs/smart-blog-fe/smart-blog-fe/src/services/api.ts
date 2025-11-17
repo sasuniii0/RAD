@@ -44,12 +44,15 @@ api.interceptors.response.use(
                     throw new Error("No refresh token available")
                 }
                 const res = await handleRefreshToken(refreshToken)
-                localStorage.set("accessToken" , res.accessToken)
+                localStorage.setItem("accessToken" , res.accessToken)
 
                 originalRequest.headers.Authorization = `Bearer ${res.accessToken}`
                 return axios(originalRequest)
             } catch (err){
-
+                localStorage.removeItem("accessToken")
+                localStorage.removeItem("refreshToken")
+                window.location.href = "/login"
+                return Promise.reject(err)
             }
         }
         return Promise.reject(err)
