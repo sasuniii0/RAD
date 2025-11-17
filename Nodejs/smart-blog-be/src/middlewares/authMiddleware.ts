@@ -24,6 +24,6 @@ export const authenitcate = (req:AuthRequest,res:Response,next:NextFunction)=>{
         req.user = payload; // attaching the payload to the req object
         next()
     }catch(err){
-        return res.status(401).json({message:"Unauthorized"});
+        return res.status(401).json({message:"Invalid or expired token"});
     }
 }

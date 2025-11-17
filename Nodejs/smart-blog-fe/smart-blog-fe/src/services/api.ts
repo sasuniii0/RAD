@@ -1,6 +1,7 @@
 // axios content api.ts -> api services
 
-import axios from 'axios';
+import axios, { Axios, AxiosError } from 'axios';
+import { handleRefreshToken } from './auth';
 
 const api = axios.create({
     baseURL: 'http://localhost:5000/api/v1', // Base URL for your API
@@ -24,5 +25,35 @@ api.interceptors.request.use((config) => {
     }
     return config
 })
+
+api.interceptors.response.use(
+    (response) => {return response} ,
+    async (err: AxiosError) => {
+        const originalRequest : any = err.config
+
+        const isPublic = PUBLIC_ENDPOINTS.some((url) =>
+            originalRequest.url?.includes(url)
+        )
+
+        if(err.response?.status === 401 && !isPublic && !originalRequest._retry){
+            originalRequest._retry = true
+            try{
+                const refreshToken = localStorage.getItem("refreshToken")
+
+                if(!refreshToken) {
+                    throw new Error("No refresh token available")
+                }
+                const res = await handleRefreshToken(refreshToken)
+                localStorage.set("accessToken" , res.accessToken)
+
+                originalRequest.headers.Authorization = `Bearer ${res.accessToken}`
+                return axios(originalRequest)
+            } catch (err){
+
+            }
+        }
+        return Promise.reject(err)
+    }
+)
 
 export default api;

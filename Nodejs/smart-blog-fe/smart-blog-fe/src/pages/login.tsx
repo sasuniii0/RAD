@@ -29,6 +29,7 @@ const Login: React.FC = () => {
             const response:any = await login(obj.email, obj.password);
 
             const token = response.data.accessToken
+            const refreshToken = response.data.refreshToken
 
             if(!token) {
                 alert("Login failed. Please try again.");
@@ -36,6 +37,7 @@ const Login: React.FC = () => {
             }
 
             await localStorage.setItem('token', token);
+            await localStorage.setItem('refreshToken' , refreshToken)
 
             const details = await getMydetails()
             setUser(details.data)

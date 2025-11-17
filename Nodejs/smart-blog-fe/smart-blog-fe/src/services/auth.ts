@@ -23,3 +23,8 @@ export const getMydetails = async()=>{
     return res.data;
 }
 
+// handle backend request in frontend
+export const handleRefreshToken = async(refreshToken : string) =>{
+    const res = await api.post('/auth/refresh' , {toke : refreshToken})
+    return res.data
+}
