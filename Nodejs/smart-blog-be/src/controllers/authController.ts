@@ -1,9 +1,15 @@
 import { Request,Response } from "express";
 import { IUser,Role,Status,User } from "../models/userModel";
-import { signAccessToken } from "../utils/tokens";
+import { signAccessToken, signRefreshToken } from "../utils/tokens";
 import { AuthRequest } from "../middlewares/authMiddleware";
 import bcrypt from "bcryptjs"
 import { existsSync } from "fs";
+import jwt from "jsonwebtoken"
+import dotenv from "dotenv"
+
+dotenv.config()
+
+const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET as string;
 
 export const userRegister = async (req:Request,res:Response)=>{
     try{
@@ -71,12 +77,19 @@ export const userLogin = async (req:Request,res:Response)=>{
 
         const accessToken = signAccessToken(existingUser)
 
+        // if(!accessToken) {
+        //     const refreshToken = signRefreshToken(existingUser)
+        // }
+
+        const refreshToken = signRefreshToken(existingUser)
+
         res.status(200).json({
             message : "success",
             data: {
                 email: existingUser.email,
                 Role: existingUser.role,
-                accessToken
+                accessToken,
+                refreshToken
             }
         })
     }catch(err:any){
@@ -150,5 +163,30 @@ export const adminRegister = async (req:Request,res:Response)=>{
         return res.status(500).json({
             message: "Internel server error"
         })
+    }
+}
+
+// api for get the refresh token from the request
+export const handleRefreshToken = async (req:Request, res:Response)=>{
+    try{
+        const { refreshToken } = req.body
+
+        // backend eken illpuw hmbune nathi unama bad request kyla error display krnn puluwn
+        if(!refreshToken) {
+            return res.status(400).json({message : "Token Required"})
+        }
+
+        const payload = jwt.verify(refreshToken , JWT_REFRESH_SECRET)
+        //payload.sub - userID
+        const user = await User.findById(payload.sub)
+        if(!user) {
+            return res.status(403).json({message : "Invalid refresh token"})
+        }
+
+        const accessToken = signAccessToken(user)
+        res.status(200).json({accessToken})
+        
+    }catch(err){
+        res.status(403).json({message: "Invalid or expired token"})
     }
 }
